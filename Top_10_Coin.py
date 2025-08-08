@@ -47,7 +47,7 @@ def fetch_top_symbols():
         for item in sorted_by_volume[:TOP_SYMBOL_LIMIT]:
             symbols.append({
                 "symbol": item["symbol"],
-                "candle_interval": "5m",
+                "candle_interval": "3m",
                 "limit": 2
             })
 
@@ -118,7 +118,7 @@ def send_telegram_notification(symbol, candle, analysis):
         return
 
     msg = f"""
-📊 *{symbol} - Nến {analysis['candle_type'].upper()}* lúc {datetime.now(VIETNAM_TIMEZONE).strftime('%Y-%m-%d %H:%M:%S')}
+📊 *{symbol} - Nến 3 min {analysis['candle_type'].upper()}* lúc {datetime.now(VIETNAM_TIMEZONE).strftime('%Y-%m-%d %H:%M:%S')}
 ━━━━━━━━━━━━━━
 📈 Open: {analysis['open']:.8f}
 📉 Close: {analysis['close']:.8f}
@@ -152,7 +152,7 @@ def main():
     global SYMBOLS, last_fetch_time
 
     print("🟢 Bot đang chạy...")
-    send_telegram_alert(f"Start server 10 coin", is_critical=False)
+    send_telegram_alert(f"[TEST]Start server 10 coin chart 3 min", is_critical=False)
 
     while True:
         try:
@@ -163,7 +163,7 @@ def main():
                 last_fetch_time = datetime.now()
                 print(f"✅ Cập nhật SYMBOLS lúc {last_fetch_time}")
 
-            if now_utc.minute % 5 == 0 and now_utc.second < 3:
+            if now_utc.minute % 3 == 0 and now_utc.second < 3:
                 print(f"\n⏱ Kiểm tra lúc {datetime.now(VIETNAM_TIMEZONE).strftime('%Y-%m-%d %H:%M:%S')}")
                 for sym in SYMBOLS:
                     candle = fetch_latest_candle(sym)
@@ -174,7 +174,7 @@ def main():
                         print(f"✔️ {sym['symbol']} | {analysis['candle_type']} | Râu nến trên: {analysis['upper_wick_percent']:.4f}% | % Râu nến dưới: {analysis['lower_wick_percent']:.4f}%")
                         send_telegram_notification(sym['symbol'], candle, analysis)
 
-                time.sleep(300 - now_utc.second % 60)  # Đợi hết 1 phút tránh trùng
+                time.sleep(180 - now_utc.second % 60)  # Đợi hết 1 phút tránh trùng
             else:
                 time.sleep(1)
         except Exception as e:

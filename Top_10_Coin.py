@@ -118,7 +118,7 @@ def send_telegram_notification(symbol, candle, analysis):
         return
 
     msg = f"""
-📊 *{symbol} - Nến 3 min {analysis['candle_type'].upper()}* lúc {datetime.now(VIETNAM_TIMEZONE).strftime('%Y-%m-%d %H:%M:%S')}
+📊 *{symbol} - [TEST Nến 3 min ]  {analysis['candle_type'].upper()}* lúc {datetime.now(VIETNAM_TIMEZONE).strftime('%Y-%m-%d %H:%M:%S')}
 ━━━━━━━━━━━━━━
 📈 Open: {analysis['open']:.8f}
 📉 Close: {analysis['close']:.8f}
@@ -152,7 +152,7 @@ def main():
     global SYMBOLS, last_fetch_time
 
     print("🟢 Bot đang chạy...")
-    send_telegram_alert(f"[TEST]Start server 10 coin chart 3 min", is_critical=False)
+    send_telegram_alert(f"[TEST] Start server 10 coin chart 3 min", is_critical=False)
 
     while True:
         try:

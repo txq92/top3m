@@ -10,7 +10,7 @@ TELEGRAM_BOT_TOKEN = "8226246719:AAHXDggFiFYpsgcq1vwTAWv7Gsz1URP4KEU"
 TELEGRAM_CHAT_ID = "-4706073326"
 TOP_SYMBOL_LIMIT = 15
 RATE_PERCENT = 0.25
-RATE_BODY  = 0.60 
+RATE_BODY  = 0.70 
 
 
 SYMBOLS = []
@@ -118,7 +118,7 @@ def send_telegram_notification(symbol, candle, analysis):
         return
 
     msg = f"""
-📊 *{symbol} - [TEST Nến 3 min ]  {analysis['candle_type'].upper()}* lúc {datetime.now(VIETNAM_TIMEZONE).strftime('%Y-%m-%d %H:%M:%S')}
+📊 *[TEST Nến 3 min ] {symbol} - {analysis['candle_type'].upper()}* lúc {datetime.now(VIETNAM_TIMEZONE).strftime('%Y-%m-%d %H:%M:%S')}
 ━━━━━━━━━━━━━━
 📈 Open: {analysis['open']:.8f}
 📉 Close: {analysis['close']:.8f}

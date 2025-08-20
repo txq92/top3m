@@ -8,8 +8,8 @@ import traceback
 VIETNAM_TIMEZONE = ZoneInfo("Asia/Ho_Chi_Minh")
 TELEGRAM_BOT_TOKEN = "8226246719:AAHXDggFiFYpsgcq1vwTAWv7Gsz1URP4KEU"
 TELEGRAM_CHAT_ID = "-4706073326"
-TOP_SYMBOL_LIMIT = 25
-RATE_PERCENT = 0.4
+TOP_SYMBOL_LIMIT = 20
+RATE_PERCENT = 0.5
 RATE_BODY  = 0.7
 
 
@@ -152,7 +152,7 @@ def main():
     global SYMBOLS, last_fetch_time
 
     print("🟢 Bot đang chạy...")
-    send_telegram_alert(f"[TEST] Start server 10 coin chart 3 min", is_critical=False)
+    send_telegram_alert(f"Start server 20 coin chart 3 min", is_critical=False)
 
     while True:
         try:
